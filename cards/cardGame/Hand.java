@@ -36,4 +36,8 @@ public class Hand {
     return string;
   }
 
+  public int getSize() {
+    return hand.size();
+  }
+
 }

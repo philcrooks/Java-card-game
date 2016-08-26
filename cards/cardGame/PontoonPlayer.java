@@ -18,7 +18,7 @@ public class PontoonPlayer extends Player {
   private Card twist() {
     if (game == null) {
       // We're testing
-      return new Card(Suit.CLUBS, Rank.ACE, 1);
+      return new Card(Suit.HEARTS, Rank.ACE, 1);
     }
     return game.dealCard();
   }
@@ -43,7 +43,7 @@ public class PontoonPlayer extends Player {
       if (hitMe) {
         hand.addCard(twist());
       }
-    } while (hitMe);
+    } while (hitMe && (hand.getValue() <= 21) && (hand.getSize() <= 4));
   }
 
   public void playDealerTurn() {
