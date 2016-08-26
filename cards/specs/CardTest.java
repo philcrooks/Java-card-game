@@ -2,7 +2,6 @@ import static org.junit.Assert.*;
 import org.junit.*;
 import cardGameTypes.*;
 import cardGame.*;
-import cardGameTypes.*;
 
 public class CardTest{
   Pack pack;
@@ -57,7 +56,7 @@ public class CardTest{
   public void handGetsCards() {
     Hand hand = new Hand();
     for(int i=0; i<5; i++) {
-      hand.giveCard(deck);
+      hand.addCard(deck.dealCard());
     }
     assertEquals("Ace of Clubs\n2 of Clubs\n3 of Clubs\n4 of Clubs\n5 of Clubs\n", hand.toString());
     assertEquals("6 of Clubs", deck.getCard(0).toString());

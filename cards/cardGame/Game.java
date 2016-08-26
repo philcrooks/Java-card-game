@@ -6,14 +6,6 @@ public abstract class Game {
   protected Deck deck;
   protected Player[] players;
 
-  public Game () {
-
-  }
-
-  // public Player[] getPlayers() {
-
-  // }
-
   public void dealCards( int numberOfPacks,
                          Player[] players,
                          int cardsPerPlayer ) {
@@ -26,7 +18,7 @@ public abstract class Game {
     Hand[] hands = new Hand[numberOfPlayers];
     for ( int c = 0; c < cardsPerPlayer; c ++) {
       for (Hand hand : hands) {
-        hand.giveCard(deck);
+        hand.addCard(dealCard());
       }
     }
 
@@ -34,6 +26,11 @@ public abstract class Game {
     for ( int c = 0; c < numberOfPlayers; c++ ) {
       players[c].giveHand(hands[c]);
     }
+  }
+
+
+  public Card dealCard() {
+    return deck.dealCard();
   }
 
   public abstract void playGame();
