@@ -1,9 +1,9 @@
 package cardGame;
 import cardGameTypes.*;
 
-public class BlackjackGame extends Game {
-  
-  public BlackjackGame( int numberOfPlayers ) {
+public class PontoonGame extends Game {
+
+  public PontoonGame( int numberOfPlayers ) {
     players = new BlackjackPlayer[numberOfPlayers];
   }
 

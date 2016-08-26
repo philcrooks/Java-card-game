@@ -1,9 +1,9 @@
 package cardGame;
 import cardGameTypes.*;
 
-public class BlackjackPlayer extends Player {
+public class PontoonPlayer extends Player {
 
-  public BlackjackPlayer( String name ) {
+  public PontoonPlayer( String name ) {
     super(name);
   }
 
