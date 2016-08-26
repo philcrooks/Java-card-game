@@ -21,8 +21,8 @@ public class CardTest{
   }
 
   @Test
-  public void pickACardFromPack(){
-    assertEquals("Ace of Diamonds", pack.get(13).toString());
+  public void pickACardFromDeck(){
+    assertEquals("Ace of Diamonds", deck.get(13).toString());
   }
 
   @Test
@@ -49,7 +49,7 @@ public class CardTest{
   public void handGetsCards() {
     Hand hand = new Hand();
     for(int i=0; i<5; i++) {
-      hand.takeACard(deck);
+      hand.giveCard(deck);
     }
     assertEquals("Ace of Clubs\n2 of Clubs\n3 of Clubs\n4 of Clubs\n5 of Clubs\n", hand.toString());
     assertEquals("6 of Clubs", deck.get(0).toString());

@@ -22,9 +22,4 @@ public class Pack {
   public int size() {
     return pack.size();
   }
-
-  public Card get(int index){
-    return pack.get(index);
-  }
-
 }

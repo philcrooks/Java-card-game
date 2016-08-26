@@ -9,7 +9,7 @@ public class Hand {
     hand = new ArrayList<Card>();
   }
 
-  public void takeACard(Deck deck){
+  public void giveCard(Deck deck){
     //deck may become discard pile in the future so this may become an interface not deck passed in
     hand.add(deck.dealCard());
   }
