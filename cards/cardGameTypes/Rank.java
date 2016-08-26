@@ -1,7 +1,6 @@
 package cardGameTypes;
 
-
-public enum Spots {
+public enum Rank {
   ACE ("Ace"),
   TWO ("2"),
   THREE ("3"),
@@ -17,9 +16,14 @@ public enum Spots {
   KING ("King");
 
   private final String text;
+  private static final int size = Rank.values().length;
 
-  private Spots(String s) {
+  private Rank(String s) {
     text = s;
+  }
+
+  public int getSize() {
+    return size;
   }
 
   public String toString() {

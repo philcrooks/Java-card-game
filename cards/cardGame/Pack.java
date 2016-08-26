@@ -4,13 +4,35 @@ import cardGameTypes.*;
 
 public class Pack {
 
-  private ArrayList<Card> pack;
+  protected ArrayList<Card> pack;
 
   public Pack() {
+    // No game-specific values provided
     pack = new ArrayList<Card>();
-    for (Suits suit : Suits.values()) {
-      for (Spots spot : Spots.values()) {
-        pack.add(new Card(suit, spot));
+    for (Suit suit : Suit.values()) {
+      for (Rank rank : Rank.values()) {
+        pack.add(new Card(suit, rank));
+      }
+    }
+  }
+
+  public Pack(int[] values) {
+    // No game-specific values provided
+    int i;
+    pack = new ArrayList<Card>();
+    for (Suit suit : Suit.values()) {
+      i = 0;
+      for (Rank rank : Rank.values()) {
+        pack.add(new Card(suit, rank, values[i++]));
+      }
+    }
+  }
+
+  public Pack(EnumMap<Rank, Integer> values) {
+    pack = new ArrayList<Card>();
+    for (Suit suit : Suit.values()) {
+      for (Rank rank : Rank.values()) {
+        pack.add(new Card(suit, rank, (int)values.get(rank)));
       }
     }
   }

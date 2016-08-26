@@ -52,7 +52,7 @@ public class Deck {
     return deck.size();
   }
 
-  public Card get(int index){
+  public Card getCard(int index){
     return deck.get(index);
   }
 

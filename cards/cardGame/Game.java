@@ -2,6 +2,7 @@ package cardGame;
 import cardGameTypes.*;
 
 public abstract class Game {
+  protected Pack pack;
   protected Deck deck;
   protected Player[] players;
 
@@ -17,7 +18,6 @@ public abstract class Game {
                          Player[] players,
                          int cardsPerPlayer ) {
     // Get the cards
-    Pack pack = new Pack();
     deck = new Deck(pack, numberOfPacks);
     deck.shuffle();
 

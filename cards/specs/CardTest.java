@@ -5,44 +5,52 @@ import cardGame.*;
 import cardGameTypes.*;
 
 public class CardTest{
-
   Pack pack;
   Deck deck;
+  Deck doubleDeck;
+  static final int[] values = new int[]{11,2,3,4,5,6,7,8,9,10,10,10,10};
 
   @Before
   public void before(){
-    pack = new Pack();
-    deck = new Deck();
-    deck.add(pack);
+    pack = new Pack(values);
+    deck = new Deck(pack);
+    doubleDeck = new Deck(pack, 2);
   }
+
   @Test
   public void packSizeCheck(){
-    assertEquals(52,pack.size());
+    assertEquals(52, pack.size());
   }
 
   @Test
   public void pickACardFromDeck(){
-    assertEquals("Ace of Diamonds", deck.get(13).toString());
+    assertEquals("Ace of Diamonds", deck.getCard(13).toString());
   }
 
   @Test
   public void deckSizeCheck() {
     deck.add(pack);
     assertEquals(104, deck.size());
+    assertEquals(104, doubleDeck.size());
+  }
+
+  @Test
+  public void cardValueCheck() {
+    assertEquals(11, deck.getCard(0).getValue());
   }
 
   @Test
   public void deckShuffle() {
-    Card card = deck.get(13);
+    Card card = deck.getCard(13);
     deck.shuffle();
-    assertEquals(false, card == deck.get(13));
+    assertEquals(false, card == deck.getCard(13));
   }
 
   @Test
   public void dealCard() {
-    Card card = deck.get(0);
+    Card card = deck.getCard(0);
     assertEquals(card, deck.dealCard());
-    assertEquals(false, card == deck.get(0));
+    assertEquals(false, card == deck.getCard(0));
   }
 
  @Test
@@ -52,7 +60,7 @@ public class CardTest{
       hand.giveCard(deck);
     }
     assertEquals("Ace of Clubs\n2 of Clubs\n3 of Clubs\n4 of Clubs\n5 of Clubs\n", hand.toString());
-    assertEquals("6 of Clubs", deck.get(0).toString());
+    assertEquals("6 of Clubs", deck.getCard(0).toString());
   }
  
 
