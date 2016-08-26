@@ -4,7 +4,7 @@ import cardGameTypes.*;
 public class PontoonGame extends Game {
 
   public PontoonGame( int numberOfPlayers ) {
-    players = new BlackjackPlayer[numberOfPlayers];
+    players = new PontoonPlayer[numberOfPlayers];
   }
 
   public void playGame() {
