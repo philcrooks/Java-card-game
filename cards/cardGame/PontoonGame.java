@@ -22,32 +22,37 @@ public class PontoonGame extends Game {
   }
 
   public void playGame() {
+    shuffleCards();
+    dealHands(2);
+    Player firstPlayer = getFirstPlayer();
+    Player player = firstPlayer;
+    do {
+      player.playTurn();
+      player = getNextPlayer();
+    } while (player != firstPlayer);
 
-  }
+    // work out who won.
+    // Winners are those who have more points than the dealer without going bust.
+    Player dealer = getDealer();
+    int dealerScore = dealer.valueOfHand();
+    System.out.print("The dealer (" + dealer + ") was holding " + dealerScore + " points");
+    if (dealerScore > 21) System.out.print(" (bust)");
+    System.out.println(":");
+    System.out.println(dealer.showHand());
 
-  // public Card getCardShowing() {
-  //   return dealer.showCard();
-  // }
-
-
-  // This method could be used during Pack construction but it seems a little unweildy.
-  private EnumMap<Rank, Integer> cardValues() {
-    // I the Rank changes this code should break at Compile-time
-    // It's a rather heavy-weight way of getting the values into the pack.
-    EnumMap<Rank, Integer> values = new EnumMap<>(Rank.class);
-    values.put(Rank.ACE,   11);
-    values.put(Rank.TWO,    2);
-    values.put(Rank.THREE,  3);
-    values.put(Rank.FOUR,   4);
-    values.put(Rank.FIVE,   5);
-    values.put(Rank.SIX,    6);
-    values.put(Rank.SEVEN,  7);
-    values.put(Rank.EIGHT,  8);
-    values.put(Rank.NINE,   9);
-    values.put(Rank.TEN,   10);
-    values.put(Rank.JACK,  10);
-    values.put(Rank.QUEEN, 10);
-    values.put(Rank.KING,  10);      
-    return values;
+    int playerScore;
+    player = getFirstPlayer();
+    do {
+      playerScore = player.valueOfHand();
+      if ((playerScore <= 21) && ((playerScore > dealerScore) || (dealerScore > 21))) {
+        // Player beat the dealer
+        System.out.println(player + " beat the dealer!");
+      }
+      System.out.print(player + " was holding " + playerScore + " points");
+      if (playerScore > 21) System.out.print(" (bust)");
+      System.out.println(":");
+      System.out.println(player.showHand());
+      player = getNextPlayer();
+    } while (player != dealer);
   }
 }

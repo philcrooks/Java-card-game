@@ -40,6 +40,10 @@ public abstract class Game {
     }
   }
 
+  public ArrayList<Player> getPlayers() {
+    return group;
+  }
+
   public Player switchDealer(Player newDealer) {
     if (dealer != null) dealer.setIsDealer(false);
     newDealer.setIsDealer(true);
@@ -92,6 +96,10 @@ public abstract class Game {
 
   public boolean isDealer(Player player) {
     return (dealer == player);
+  }
+
+  public void shuffleCards() {
+    deckOfCards.shuffle();
   }
 
   protected abstract Deck buildDeck();

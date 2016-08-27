@@ -1,5 +1,6 @@
 package cardGame;
 import cardGameTypes.*;
+import java.util.*;
 
 public class PontoonPlayer extends Player {
 
@@ -9,7 +10,7 @@ public class PontoonPlayer extends Player {
 
   public void playTurn() {
     if (amDealer) {
-      playDealerTurn();
+      playDealerTurn(myGame.getPlayers());
     } else {
       PontoonPlayer dealer = (PontoonPlayer)(myGame.getDealer());
       playNonDealerTurn(dealer.showCard());
@@ -47,8 +48,18 @@ public class PontoonPlayer extends Player {
     } while (hitMe && (myHand.getValue() <= 21) && (myHand.getSize() <= 4));
   }
 
-  public void playDealerTurn() {
-
+  public void playDealerTurn(ArrayList<Player> players) {
+    // Dealer is always the last to play and can see everyone else's hands.
+    int maxScore = 0;
+    for (Player player : players) {
+      if (player != this) {
+        int value = player.valueOfHand();
+        if ((value > maxScore) && (value <= 21)) maxScore = value;
+      }
+    }
+    while (myHand.getValue() < maxScore) {
+      myHand.addCard(twist());
+    }
   }
 
   public Card showCard() {

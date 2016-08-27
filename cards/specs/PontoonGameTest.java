@@ -119,12 +119,18 @@ public class PontoonGameTest {
   @Test
   public void newGameWithFourNamedPlayers() {
     PontoonGame newGame = new PontoonGame("Matthew", "Mark", "Luke", "John");
-    newGame.setDealer();
     newGame.dealHands(2);
     assertEquals("Ace of Clubs\n5 of Clubs\n", newGame.getFirstPlayer().showHand().toString());
     assertEquals("2 of Clubs\n6 of Clubs\n", newGame.getNextPlayer().showHand().toString());
     assertEquals("3 of Clubs\n7 of Clubs\n", newGame.getNextPlayer().showHand().toString());
     assertEquals("4 of Clubs\n8 of Clubs\n", newGame.getNextPlayer().showHand().toString());
     assertEquals("Ace of Clubs\n5 of Clubs\n", newGame.getNextPlayer().showHand().toString());
+  }
+
+  @Test
+  public void runGame() {
+    PontoonGame newGame = new PontoonGame("Matthew", "Mark", "Luke", "John");
+    System.out.println();
+    newGame.playGame();
   }
 }

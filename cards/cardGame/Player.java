@@ -18,6 +18,10 @@ public abstract class Player {
     return name;
   }
 
+  public String toString () {
+    return name;
+  }
+
   public void setIsDealer(boolean isDealer) {
     amDealer = isDealer;
   }
