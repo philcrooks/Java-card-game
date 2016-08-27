@@ -11,7 +11,7 @@ public class PontoonGameTest {
 
   @Before
   public void before(){
-    game = new PontoonGame(3);
+    game = new PontoonGame();
     player1 = new PontoonPlayer("Matthew");
     player2 = new PontoonPlayer("Mark");
     player3 = new PontoonPlayer("Luke");
@@ -114,5 +114,17 @@ public class PontoonGameTest {
     assertEquals("3 of Clubs\n6 of Clubs\n", player2.showHand().toString());
     assertEquals("Ace of Clubs\n4 of Clubs\n", player3.showHand().toString());
     assertEquals("7 of Clubs", game.dealCard().toString());
+  }
+
+  @Test
+  public void newGameWithFourNamedPlayers() {
+    PontoonGame newGame = new PontoonGame("Matthew", "Mark", "Luke", "John");
+    newGame.setDealer();
+    newGame.dealHands(2);
+    assertEquals("Ace of Clubs\n5 of Clubs\n", newGame.getFirstPlayer().showHand().toString());
+    assertEquals("2 of Clubs\n6 of Clubs\n", newGame.getNextPlayer().showHand().toString());
+    assertEquals("3 of Clubs\n7 of Clubs\n", newGame.getNextPlayer().showHand().toString());
+    assertEquals("4 of Clubs\n8 of Clubs\n", newGame.getNextPlayer().showHand().toString());
+    assertEquals("Ace of Clubs\n5 of Clubs\n", newGame.getNextPlayer().showHand().toString());
   }
 }

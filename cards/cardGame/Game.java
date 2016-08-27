@@ -94,6 +94,6 @@ public abstract class Game {
     return (dealer == player);
   }
 
-  public abstract Deck buildDeck();
+  protected abstract Deck buildDeck();
   public abstract void playGame();
 }

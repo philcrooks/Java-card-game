@@ -3,12 +3,20 @@ import cardGameTypes.*;
 import java.util.*;
 
 public class PontoonGame extends Game {
-
-  public PontoonGame( int numberOfPlayers ) {
+  
+  public PontoonGame() {
     super();
   }
 
-  public Deck buildDeck() {
+  public PontoonGame(String... names) {
+    super();
+    for (String name : names) {
+      addPlayer(new PontoonPlayer(name));
+    }
+    setDealer();
+  }
+
+  protected Deck buildDeck() {
     Pack pack = new Pack(new int[]{11,2,3,4,5,6,7,8,9,10,10,10,10});
     return new Deck(pack);
   }
