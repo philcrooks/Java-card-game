@@ -12,22 +12,22 @@ public class Deck {
 
   public Deck(Pack pack) {
     deck = new ArrayList<Card>();
-    add(pack, 1);
+    addPack(pack, 1);
   }
 
   public Deck(Pack pack, int times) {
     deck = new ArrayList<Card>();
-    add(pack, times);
+    addPack(pack, times);
   }
 
   // Add cards to the deck. 
   // All Card needs to do is to support the getCards() method which returns ArrayList<Card>
-  public void add(Pack pack) {
+  public void addPack(Pack pack) {
     //deck.addAll(pack.getCards());
-    add(pack, 1);
+    addPack(pack, 1);
   }
 
-  public void add(Pack pack, int times) {
+  public void addPack(Pack pack, int times) {
     for ( int c = 0; c < times; c++ ) {
       deck.addAll(pack.getCards());     
     }

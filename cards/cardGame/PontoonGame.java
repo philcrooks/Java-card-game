@@ -8,9 +8,28 @@ public class PontoonGame extends Game {
   public PontoonGame( int numberOfPlayers ) {
     players = new PontoonPlayer[numberOfPlayers];
     dealer = (PontoonPlayer)players[numberOfPlayers-1]; 
-    pack = new Pack(cardValues());
+    // pack = new Pack(cardValues());
+    pack = new Pack(new int[]{11,2,3,4,5,6,7,8,9,10,10,10,10});
   }
 
+  public void playGame() {
+    deck = new Deck(pack);
+
+    for (PontoonPlayer player : (PontoonPlayer[])players) {
+      player.playTurn();
+    }
+  }
+
+  public PontoonPlayer whoIsDealer() {
+    return dealer;
+  }
+
+  public Card getCardShowing() {
+    return dealer.showCard();
+  }
+
+
+  // This method could be used during Pack construction but it seems a little unweildy.
   private EnumMap<Rank, Integer> cardValues() {
     // I the Rank changes this code should break at Compile-time
     // It's a rather heavy-weight way of getting the values into the pack.
@@ -29,19 +48,5 @@ public class PontoonGame extends Game {
     values.put(Rank.QUEEN, 10);
     values.put(Rank.KING,  10);      
     return values;
-  }
-
-  public PontoonPlayer whoIsDealer() {
-    return dealer;
-  }
-
-  public Card getCardShowing() {
-    return dealer.showCard();
-  }
-
-  public void playGame() {
-    for (PontoonPlayer player : (PontoonPlayer[])players) {
-      player.playTurn();
-    }
   }
 }

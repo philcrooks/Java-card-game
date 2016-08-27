@@ -3,7 +3,7 @@ import org.junit.*;
 import cardGameTypes.*;
 import cardGame.*;
 
-public class PontoonTest{
+public class PontoonPlayerTest{
   Pack pack;
   Deck deck;
   PontoonPlayer player;

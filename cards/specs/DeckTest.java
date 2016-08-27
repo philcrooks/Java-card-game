@@ -3,7 +3,7 @@ import org.junit.*;
 import cardGameTypes.*;
 import cardGame.*;
 
-public class CardTest{
+public class DeckTest{
   Pack pack;
   Deck deck;
   Deck doubleDeck;
@@ -28,7 +28,7 @@ public class CardTest{
 
   @Test
   public void deckSizeCheck() {
-    deck.add(pack);
+    deck.addPack(pack);
     assertEquals(104, deck.size());
     assertEquals(104, doubleDeck.size());
   }
