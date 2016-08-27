@@ -11,17 +11,17 @@ public class PontoonPlayer extends Player {
     if (amDealer) {
       playDealerTurn();
     } else {
-      PontoonPlayer dealer = (PontoonPlayer)(myGroup.getDealer());
+      PontoonPlayer dealer = (PontoonPlayer)(myGame.getDealer());
       playNonDealerTurn(dealer.showCard());
     }
   }
 
   private Card twist() {
-    if (myGroup == null) {
+    if (myGame == null) {
       // We're testing
       return new Card(Suit.HEARTS, Rank.ACE, 1);
     }
-    return myGroup.dealCard();
+    return myGame.dealCard();
   }
 
   public void playNonDealerTurn( Card dealerShowing ) {
@@ -52,7 +52,7 @@ public class PontoonPlayer extends Player {
   }
 
   public Card showCard() {
-    if (myHand == null) return null;
-    return (myHand.getLastCard());
+    if ((myHand == null) || !amDealer) return null;
+    return myHand.getLastCard();
   }
 }

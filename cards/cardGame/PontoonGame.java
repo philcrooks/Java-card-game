@@ -5,17 +5,16 @@ import java.util.*;
 public class PontoonGame extends Game {
 
   public PontoonGame( int numberOfPlayers ) {
-    players = new PontoonPlayer[numberOfPlayers];
-    // pack = new Pack(cardValues());
-    pack = new Pack(new int[]{11,2,3,4,5,6,7,8,9,10,10,10,10});
+    super();
+  }
+
+  public Deck buildDeck() {
+    Pack pack = new Pack(new int[]{11,2,3,4,5,6,7,8,9,10,10,10,10});
+    return new Deck(pack);
   }
 
   public void playGame() {
-    deck = new Deck(pack);
 
-    for (PontoonPlayer player : (PontoonPlayer[])players) {
-      player.playTurn();
-    }
   }
 
   // public Card getCardShowing() {

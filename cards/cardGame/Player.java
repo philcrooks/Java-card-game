@@ -5,12 +5,12 @@ public abstract class Player {
   private String name;
   protected boolean amDealer;
   protected Hand myHand;
-  protected PlayerGroup myGroup;
+  protected Game myGame;
 
   public Player( String name) {
     this.name = name;
     amDealer = false;
-    myGroup = null;
+    myGame = null;
     myHand = new Hand();
   }
 
@@ -22,8 +22,8 @@ public abstract class Player {
     amDealer = isDealer;
   }
 
-  public void setGroup(PlayerGroup group) {
-    myGroup = group;
+  public void setGame(Game game) {
+    myGame = game;
   }
 
   public void giveCard(Card card) {
