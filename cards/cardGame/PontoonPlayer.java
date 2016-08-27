@@ -3,15 +3,16 @@ import cardGameTypes.*;
 
 public class PontoonPlayer extends Player {
 
-  public PontoonPlayer( String name, Game game ) {
-    super(name, game);
+  public PontoonPlayer( String name ) {
+    super(name);
   }
 
   public void playTurn() {
-    if (((PontoonGame)game).whoIsDealer() == this) {
+    if (amDealer) {
       playDealerTurn();
     } else {
-      playNonDealerTurn(((PontoonGame)game).getCardShowing());
+      PontoonPlayer dealer = (PontoonPlayer)(myGroup.getDealer());
+      playNonDealerTurn(dealer.showCard());
     }
   }
 
@@ -26,7 +27,7 @@ public class PontoonPlayer extends Player {
   public void playNonDealerTurn( Card dealerShowing ) {
     boolean hitMe = false;
     do {
-      switch (hand.getValue()) {
+      switch (myHand.getValue()) {
         case 15:
         case 16: hitMe = (dealerShowing.getValue() >= 7);
                  break;
@@ -41,9 +42,9 @@ public class PontoonPlayer extends Player {
                  break;
       }
       if (hitMe) {
-        hand.addCard(twist());
+        myHand.addCard(twist());
       }
-    } while (hitMe && (hand.getValue() <= 21) && (hand.getSize() <= 4));
+    } while (hitMe && (myHand.getValue() <= 21) && (myHand.getSize() <= 4));
   }
 
   public void playDealerTurn() {
@@ -51,7 +52,7 @@ public class PontoonPlayer extends Player {
   }
 
   public Card showCard() {
-    if (hand == null) return null;
-    return (hand.getLastCard());
+    if (myHand == null) return null;
+    return (myHand.getLastCard());
   }
 }

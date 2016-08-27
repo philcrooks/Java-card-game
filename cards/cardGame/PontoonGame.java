@@ -3,11 +3,9 @@ import cardGameTypes.*;
 import java.util.*;
 
 public class PontoonGame extends Game {
-  private PontoonPlayer dealer;
 
   public PontoonGame( int numberOfPlayers ) {
     players = new PontoonPlayer[numberOfPlayers];
-    dealer = (PontoonPlayer)players[numberOfPlayers-1]; 
     // pack = new Pack(cardValues());
     pack = new Pack(new int[]{11,2,3,4,5,6,7,8,9,10,10,10,10});
   }
@@ -20,13 +18,9 @@ public class PontoonGame extends Game {
     }
   }
 
-  public PontoonPlayer whoIsDealer() {
-    return dealer;
-  }
-
-  public Card getCardShowing() {
-    return dealer.showCard();
-  }
+  // public Card getCardShowing() {
+  //   return dealer.showCard();
+  // }
 
 
   // This method could be used during Pack construction but it seems a little unweildy.

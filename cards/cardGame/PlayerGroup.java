@@ -4,16 +4,19 @@ import java.util.*;
 
 public class PlayerGroup {
   ArrayList<Player> group;
-  int firstPlayerIndex;
+  Player dealer;
   int dealerIndex;
+  int firstPlayerIndex;
   int runningIndex;
 
   public PlayerGroup() {
     group = new ArrayList<Player>();
     firstPlayerIndex = dealerIndex = runningIndex = -1;
+    dealer = null;
   }
 
   public void addPlayer(Player player) {
+    player.setGroup(this);
     group.add(player);
     if ((dealerIndex > 0) && (firstPlayerIndex < dealerIndex)) {
       // If the dealer index has been set, the dealer is no longer the last in the list
@@ -21,18 +24,25 @@ public class PlayerGroup {
     }
   }
 
+  private Player switchDealer(Player newDealer) {
+    if (dealer != null) dealer.setIsDealer(false);
+    newDealer.setIsDealer(true);
+    dealer = newDealer;
+    return dealer;
+  }
+
   public Player setDealer() {
     dealerIndex = group.size() - 1;
     if (dealerIndex < 0) return null;
     firstPlayerIndex = 0;
-    return group.get(dealerIndex);
+    return switchDealer(group.get(dealerIndex));
   }
 
   public Player setDealer(Player player) {
     dealerIndex = group.indexOf(player);
     if (dealerIndex < 0) return null;
     firstPlayerIndex = (dealerIndex + 1) % group.size();
-    return player;
+    return switchDealer(player);
   }
 
   public Player setDealer (String name) {
@@ -41,11 +51,15 @@ public class PlayerGroup {
       if (player.getName() == name) {
         dealerIndex = c;
         firstPlayerIndex = (dealerIndex + 1) % group.size();
-        return player;
+        return switchDealer(player);
       }
       c += 1;
     }
     return null;
+  }
+
+  public Player getDealer() {
+    return dealer;
   }
 
   public Player getFirstPlayer() {
@@ -61,7 +75,6 @@ public class PlayerGroup {
   }
 
   public boolean isDealer(Player player) {
-    if (dealerIndex < 0) return false;
-    return (group.get(dealerIndex) == player);
+    return (dealer == player);
   }
 }

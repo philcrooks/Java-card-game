@@ -3,29 +3,39 @@ import cardGameTypes.*;
 
 public abstract class Player {
   private String name;
-  protected Hand hand;
-  protected Game game;
+  protected boolean amDealer;
+  protected Hand myHand;
+  protected PlayerGroup myGroup;
 
-  public Player( String name, Game game ) {
+  public Player( String name) {
     this.name = name;
-    this.game = game;
+    amDealer = false;
+    myGroup = null;
   }
 
   public String getName() {
     return name;
   }
 
+  public void setIsDealer(boolean isDealer) {
+    amDealer = isDealer;
+  }
+
+  public void setGroup(PlayerGroup group) {
+    myGroup = group;
+  }
+
   public void giveHand(Hand hand) {
-    this.hand = hand;
+    myHand = hand;
   }
 
   public int valueOfHand() {
-    if (hand == null) return 0;
-    return hand.getValue();
+    if (myHand == null) return 0;
+    return myHand.getValue();
   }
 
   public Hand showHand() {
-    return hand;  
+    return myHand;  
   }
 
   public abstract void playTurn();

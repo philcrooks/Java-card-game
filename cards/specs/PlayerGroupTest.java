@@ -12,9 +12,9 @@ public class PlayerGroupTest {
   @Before
   public void before() {
     group = new PlayerGroup();
-    player1 = new PontoonPlayer("Matthew", null);
-    player2 = new PontoonPlayer("Mark", null);
-    player3 = new PontoonPlayer("Luke", null);
+    player1 = new PontoonPlayer("Matthew");
+    player2 = new PontoonPlayer("Mark");
+    player3 = new PontoonPlayer("Luke");
   }
 
   @Test

@@ -23,11 +23,14 @@ public abstract class Game {
     }
 
     // Give hands to the players
-    for ( int c = 0; c < numberOfPlayers; c++ ) {
-      players[c].giveHand(hands[c]);
+    // for ( int c = 0; c < numberOfPlayers; c++ ) {
+    //   players[c].giveHand(hands[c]);
+    // }
+    int c = 0;
+    for (Player player : players) {
+      player.giveHand(hands[c++]);
     }
   }
-
 
   public Card dealCard() {
     return deck.dealCard();

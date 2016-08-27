@@ -13,7 +13,7 @@ public class PontoonPlayerTest{
   public void before() {
     pack = new Pack(values);
     deck = new Deck(pack);
-    player = new PontoonPlayer("Phil", (PontoonGame) null);
+    player = new PontoonPlayer("Phil");
   }
 
   @Test
