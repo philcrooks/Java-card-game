@@ -6,35 +6,35 @@ public abstract class Game {
   protected Deck deck;
   protected Player[] players;
 
-  public void dealCards( int numberOfPacks,
-                         Player[] players,
-                         int cardsPerPlayer ) {
-    // Get the cards
-    deck = new Deck(pack, numberOfPacks);
-    deck.shuffle();
+  // public void dealCards( int numberOfPacks,
+  //                        Player[] players,
+  //                        int cardsPerPlayer ) {
+  //   // Get the cards
+  //   deck = new Deck(pack, numberOfPacks);
+  //   deck.shuffle();
 
-    // Deal the cards into hands
-    int numberOfPlayers = players.length;
-    Hand[] hands = new Hand[numberOfPlayers];
-    for ( int c = 0; c < cardsPerPlayer; c ++) {
-      for (Hand hand : hands) {
-        hand.addCard(dealCard());
-      }
-    }
+  //   // Deal the cards into hands
+  //   int numberOfPlayers = players.length;
+  //   Hand[] hands = new Hand[numberOfPlayers];
+  //   for ( int c = 0; c < cardsPerPlayer; c ++) {
+  //     for (Hand hand : hands) {
+  //       hand.addCard(dealCard());
+  //     }
+  //   }
 
-    // Give hands to the players
-    // for ( int c = 0; c < numberOfPlayers; c++ ) {
-    //   players[c].giveHand(hands[c]);
-    // }
-    int c = 0;
-    for (Player player : players) {
-      player.giveHand(hands[c++]);
-    }
-  }
+  //   // Give hands to the players
+  //   // for ( int c = 0; c < numberOfPlayers; c++ ) {
+  //   //   players[c].giveHand(hands[c]);
+  //   // }
+  //   int c = 0;
+  //   for (Player player : players) {
+  //     player.giveHand(hands[c++]);
+  //   }
+  // }
 
-  public Card dealCard() {
-    return deck.dealCard();
-  }
+  // public Card dealCard() {
+  //   return deck.dealCard();
+  // }
 
   public abstract void playGame();
 }

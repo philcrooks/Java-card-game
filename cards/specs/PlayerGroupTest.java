@@ -8,10 +8,14 @@ public class PlayerGroupTest {
   PontoonPlayer player1;
   PontoonPlayer player2;
   PontoonPlayer player3;
+  Pack pack;
+  Deck deck;
 
   @Before
-  public void before() {
-    group = new PlayerGroup();
+  public void before(){
+    pack = new Pack(new int[]{11,2,3,4,5,6,7,8,9,10,10,10,10});
+    deck = new Deck(pack);
+    group = new PlayerGroup(deck);
     player1 = new PontoonPlayer("Matthew");
     player2 = new PontoonPlayer("Mark");
     player3 = new PontoonPlayer("Luke");
@@ -101,5 +105,18 @@ public class PlayerGroupTest {
     assertEquals(player3, group.getNextPlayer());
     assertEquals(player1, group.setDealer(player1));
     assertEquals(player2, group.getFirstPlayer());
+  }
+
+  @Test
+  public void dealHandToGroupWithThreePlayers() {
+    group.addPlayer(player1);
+    group.addPlayer(player2);
+    group.addPlayer(player3);
+    group.setDealer(player2);
+    group.dealHands(2);
+    assertEquals("2 of Clubs\n5 of Clubs\n", player1.showHand().toString());
+    assertEquals("3 of Clubs\n6 of Clubs\n", player2.showHand().toString());
+    assertEquals("Ace of Clubs\n4 of Clubs\n", player3.showHand().toString());
+    assertEquals("7 of Clubs", group.dealCard().toString());
   }
 }

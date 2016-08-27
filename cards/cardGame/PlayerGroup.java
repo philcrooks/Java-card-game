@@ -5,14 +5,30 @@ import java.util.*;
 public class PlayerGroup {
   ArrayList<Player> group;
   Player dealer;
+  Deck deckOfCards;
   int dealerIndex;
   int firstPlayerIndex;
   int runningIndex;
 
-  public PlayerGroup() {
+  public PlayerGroup(Deck deck) {
+    deckOfCards = deck;
     group = new ArrayList<Player>();
     firstPlayerIndex = dealerIndex = runningIndex = -1;
     dealer = null;
+  }
+
+  public void dealHands(int noOfCards) {
+    int noOfPlayers = group.size();
+    if ((noOfPlayers == 0) || (firstPlayerIndex < 0) || (noOfCards <= 0)) return;
+    for (int c = 0; c < noOfCards; c++) {
+      for (int p = 0; p < noOfPlayers; p++) {
+        group.get((p + firstPlayerIndex) % noOfPlayers).giveCard(deckOfCards.dealCard());
+      }
+    }
+  }
+
+  public Card dealCard () {
+    return deckOfCards.dealCard();
   }
 
   public void addPlayer(Player player) {

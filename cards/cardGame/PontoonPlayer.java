@@ -17,11 +17,11 @@ public class PontoonPlayer extends Player {
   }
 
   private Card twist() {
-    if (game == null) {
+    if (myGroup == null) {
       // We're testing
       return new Card(Suit.HEARTS, Rank.ACE, 1);
     }
-    return game.dealCard();
+    return myGroup.dealCard();
   }
 
   public void playNonDealerTurn( Card dealerShowing ) {

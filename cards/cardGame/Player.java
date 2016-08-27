@@ -11,6 +11,7 @@ public abstract class Player {
     this.name = name;
     amDealer = false;
     myGroup = null;
+    myHand = new Hand();
   }
 
   public String getName() {
@@ -25,8 +26,8 @@ public abstract class Player {
     myGroup = group;
   }
 
-  public void giveHand(Hand hand) {
-    myHand = hand;
+  public void giveCard(Card card) {
+    myHand.addCard(card);
   }
 
   public int valueOfHand() {
