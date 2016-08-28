@@ -42,6 +42,7 @@ public class DeckTest{
   public void deckShuffle() {
     Card card = deck.getCard(13);
     deck.shuffle();
+    // It is possible that the card won't move!!!
     assertEquals(false, card == deck.getCard(13));
   }
 

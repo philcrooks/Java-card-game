@@ -3,14 +3,14 @@ import cardGameTypes.*;
 import cardGame.*;
 import java.util.*;
 
-class BaccaratMultiPlayerGame {
+public class BaccaratMultiPlayerGame {
   private ArrayList<BaccaratGame> games;
-  private Shoe shoe;
 
-  public void BaccaratMulti(String... players) {
+  public BaccaratMultiPlayerGame(String... players) {
     Pack pack = new Pack(new int[]{1,2,3,4,5,6,7,8,9,0,0,0,0});
-    shoe = new Shoe(pack, 4);
+    Shoe shoe = new Shoe(pack, 4);
     shoe.shuffle();
+    games = new ArrayList<BaccaratGame>();
     for (String player : players) {
       games.add(new BaccaratGame(player, shoe));
     }
@@ -28,7 +28,9 @@ class BaccaratMultiPlayerGame {
     BaccaratPlayer dealer;
     int playerScore;
     int dealerScore;
+    int gameNumber = 1;
     for (BaccaratGame game : games) {
+      System.out.println("*** Game #" + gameNumber + " ***" );
       player = (BaccaratPlayer)game.getFirstPlayer();
       dealer = (BaccaratPlayer)game.getNextPlayer();
       playerScore = player.valueOfHand();
@@ -41,9 +43,10 @@ class BaccaratMultiPlayerGame {
         System.out.println(winner + " wins!");
       }
       System.out.println(dealer + " has " + dealerScore + " points in the following cards:");
-      System.out.println(dealer.showHand());
+      System.out.print(dealer.showHand());
       System.out.println(player + " has " + playerScore + " points in the following cards:");
       System.out.println(player.showHand());
+      gameNumber += 1;
     }
   }
 }
