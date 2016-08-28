@@ -16,10 +16,6 @@ public class BaccaratPlayer extends Player {
   }
 
   private Card hitMe() {
-    if (myGame == null) {
-      // We're testing
-      return new Card(Suit.HEARTS, Rank.NINE, 9);
-    }
     return myGame.dealCard();
   }
 
