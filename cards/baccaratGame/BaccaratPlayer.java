@@ -15,25 +15,33 @@ public class BaccaratPlayer extends Player {
     return myHand.getValue() % 10;
   }
 
+  private Card hitMe() {
+    if (myGame == null) {
+      // We're testing
+      return new Card(Suit.HEARTS, Rank.NINE, 9);
+    }
+    return myGame.dealCard();
+  }
+
   private void playDealerTurn() {
     if (thirdCard == null) {
       if (valueOfHand() < 6) {
-        myHand.addCard(myGame.dealCard());
+        myHand.addCard(hitMe());
       }
     } else {
       int value3rd = thirdCard.getValue();
       switch(valueOfHand()) {
         case 0:
         case 1:
-        case 2: myHand.addCard(myGame.dealCard());
+        case 2: myHand.addCard(hitMe());
                 break;
         case 3: if (value3rd != 8) myHand.addCard(myGame.dealCard());
                 break;
-        case 4: if ((value3rd >= 2) && (value3rd <= 7)) myHand.addCard(myGame.dealCard());
+        case 4: if ((value3rd >= 2) && (value3rd <= 7)) myHand.addCard(hitMe());
                 break;
-        case 5: if ((value3rd >= 4) && (value3rd <= 7)) myHand.addCard(myGame.dealCard());
+        case 5: if ((value3rd >= 4) && (value3rd <= 7)) myHand.addCard(hitMe());
                 break;
-        case 6: if ((value3rd == 6) || (value3rd == 7)) myHand.addCard(myGame.dealCard());
+        case 6: if ((value3rd == 6) || (value3rd == 7)) myHand.addCard(hitMe());
                 break;
         default: // Do nothing
                 break;
@@ -47,7 +55,7 @@ public class BaccaratPlayer extends Player {
      } else {
       // Not the dealer
       if (valueOfHand() < 6) {
-        thirdCard = myGame.dealCard();
+        thirdCard = hitMe();
         myHand.addCard(thirdCard);
       }
     }

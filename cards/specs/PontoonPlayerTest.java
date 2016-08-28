@@ -40,10 +40,8 @@ public class PontoonPlayerTest{
     player.playNonDealerTurn(dealerCard);
     Hand hand = player.showHand();
     assertEquals(5, hand.getSize());
-    assertEquals(16, hand.getValue());
+    assertEquals(16, player.valueOfHand());
     assertEquals("Ace of Clubs\n2 of Clubs\nAce of Hearts\nAce of Hearts\nAce of Hearts\n", hand.toString());
   }
-
-
 
 }

@@ -3,22 +3,22 @@ import cardGameTypes.*;
 import cardGame.*;
 
 public class BaccaratGame extends Game {
-  private Shoe shoeOfCards;
+  private Shoe shoe;
 
   public BaccaratGame() {
     super();
   }
 
-  public BaccaratGame(String name, Shoe shoe) {
+  public BaccaratGame(String playerName, Shoe shoe) {
     super();
-    shoeOfCards = shoe;
-    addPlayer(new BaccaratPlayer(name));
+    this.shoe = shoe;
+    addPlayer(new BaccaratPlayer(playerName));
     addPlayer(new BaccaratPlayer("Dealer"));
     setDealer();
   }
 
   public Shoe buildShoe() {
-    return shoeOfCards;
+    return shoe;
   }
 
   public void playGame() {

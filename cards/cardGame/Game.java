@@ -11,13 +11,21 @@ public abstract class Game {
   private int runningIndex;
 
   public Game() {
-    shoeOfCards = buildShoe();
     group = new ArrayList<Player>();
     firstPlayerIndex = dealerIndex = runningIndex = -1;
     dealer = null;
+    shoeOfCards = null;
+  }
+
+  public void shuffleCards() {
+    if (shoeOfCards == null) shoeOfCards = buildShoe();
+    if (shoeOfCards == null) return;
+    shoeOfCards.shuffle();
   }
 
   public void dealHands(int noOfCards) {
+    if (shoeOfCards == null) shoeOfCards = buildShoe();
+    if (shoeOfCards == null) return;
     int noOfPlayers = group.size();
     if ((noOfPlayers == 0) || (firstPlayerIndex < 0) || (noOfCards <= 0)) return;
     for (int c = 0; c < noOfCards; c++) {
@@ -28,6 +36,8 @@ public abstract class Game {
   }
 
   public Card dealCard () {
+    if (shoeOfCards == null) shoeOfCards = buildShoe();
+    if (shoeOfCards == null) return null;
     return shoeOfCards.dealCard();
   }
 
@@ -101,10 +111,6 @@ public abstract class Game {
 
   public boolean isDealer(Player player) {
     return (dealer == player);
-  }
-
-  public void shuffleCards() {
-    shoeOfCards.shuffle();
   }
 
   protected abstract Shoe buildShoe();
