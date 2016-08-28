@@ -22,10 +22,14 @@ public class Hand {
     return value;
   }
 
-  public Card getLastCard() {
-    // Pontton dealer should show last card
+  public Card getFirstCard() {
+    // Pontton dealer should show first card
     // This method may not be needed by other games
-    return hand.get(hand.size() - 1);
+    return hand.get(0);
+  }
+
+  public Card getCard( int cardIndex ) {
+    return hand.get(cardIndex);
   }
 
   public String toString(){
@@ -38,10 +42,6 @@ public class Hand {
 
   public int getSize() {
     return hand.size();
-  }
-
-  public Card getCard( int cardIndex ) {
-    return hand.get(cardIndex);
   }
 
   public void replaceCard(Card oldCard, Card newCard) {

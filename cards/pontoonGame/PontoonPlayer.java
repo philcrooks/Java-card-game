@@ -82,6 +82,6 @@ public class PontoonPlayer extends Player {
 
   public Card showCard() {
     if ((myHand == null) || !amDealer) return null;
-    return myHand.getLastCard();
+    return myHand.getFirstCard();
   }
 }
