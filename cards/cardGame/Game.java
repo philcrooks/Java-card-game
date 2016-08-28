@@ -1,8 +1,9 @@
 package cardGame;
 import cardGameTypes.*;
+import behaviours.*;
 import java.util.*;
 
-public abstract class Game {
+public abstract class Game implements Playability {
   private ArrayList<Player> group;
   private Player dealer;
   private Shoe shoeOfCards;

@@ -4,7 +4,7 @@ import cardGameTypes.*;
 
 public class Pack {
 
-  protected ArrayList<Card> pack;
+  private ArrayList<Card> pack;
 
   public Pack() {
     // No game-specific values provided
@@ -34,6 +34,14 @@ public class Pack {
       for (Rank rank : Rank.values()) {
         pack.add(new Card(suit, rank, (int)values.get(rank)));
       }
+    }
+  }
+
+  public Pack(Card... cards) {
+    // For test purposes
+    pack = new ArrayList<Card>();
+    for (Card card : cards) {
+      pack.add(card);
     }
   }
 

@@ -25,10 +25,6 @@ public class PontoonPlayer extends Player {
   }
 
   private Card hitMe() {
-    if (myGame == null) {
-      // We're testing
-      return new Card(Suit.HEARTS, Rank.ACE, 1);
-    }
     return myGame.dealCard();
   }
 

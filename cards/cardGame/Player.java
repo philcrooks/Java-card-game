@@ -1,13 +1,14 @@
 package cardGame;
 import cardGameTypes.*;
+import behaviours.*;
 
 public abstract class Player {
   private String name;
   protected boolean amDealer;
   protected Hand myHand;
-  protected Game myGame;
+  protected Playability myGame;
 
-  public Player( String name) {
+  public Player( String name ) {
     this.name = name;
     amDealer = false;
     myGame = null;
@@ -26,7 +27,7 @@ public abstract class Player {
     amDealer = isDealer;
   }
 
-  public void setGame(Game game) {
+  public void setGame(Playability game) {
     myGame = game;
   }
 

@@ -3,7 +3,10 @@ import java.util.*;
 import cardGameTypes.*;
 
 public class Shoe {
+  // TODO: Create a shoe that won't shuffle for test purposes
+
   private ArrayList<Card> shoe;
+  private boolean allowShuffling = true;
 
   // Constructors
   public Shoe() {
@@ -11,6 +14,12 @@ public class Shoe {
   }
 
   public Shoe(Pack pack) {
+    shoe = new ArrayList<Card>();
+    addPack(pack, 1);
+  }
+
+  public Shoe(Pack pack, boolean allowShuffling) {
+    this.allowShuffling = allowShuffling;
     shoe = new ArrayList<Card>();
     addPack(pack, 1);
   }
@@ -36,7 +45,7 @@ public class Shoe {
   public void shuffle() {
     // TODO: May want to add a random seed here
     // This should make the shuffle less predictable
-    if (shoe != null) {
+    if ((shoe != null) && allowShuffling ) {
       Collections.shuffle(shoe);
     }
   }

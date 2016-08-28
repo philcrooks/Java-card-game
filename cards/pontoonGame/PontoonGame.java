@@ -1,9 +1,10 @@
 package pontoonGame;
 import cardGameTypes.*;
 import cardGame.*;
+import behaviours.*;
 import java.util.*;
 
-public class PontoonGame extends Game {
+public class PontoonGame extends Game implements Playability {
   
   public PontoonGame() {
     super();

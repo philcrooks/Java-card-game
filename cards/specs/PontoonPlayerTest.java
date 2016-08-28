@@ -3,17 +3,27 @@ import org.junit.*;
 import cardGameTypes.*;
 import cardGame.*;
 import pontoonGame.*;
+import behaviours.*;
+import java.util.*;
 
-public class PontoonPlayerTest{
-  Pack pack;
-  Shoe deck;
+public class PontoonPlayerTest implements Playability {
+  // TODO: Create a method for dealing a card - different packs for different tests
+  Pack packStick;
+  Pack packTwist;
   PontoonPlayer player;
-  static final int[] values = new int[]{11,2,3,4,5,6,7,8,9,10,10,10,10};
+  Shoe shoe;
+
+  public Player getDealer() { return null; }
+  public ArrayList<Player> getPlayers() { return null; }
+  public Card dealCard () { return shoe.dealCard(); }
 
   @Before
   public void before() {
-    pack = new Pack(values);
-    deck = new Shoe(pack);
+    Card spades10 = new Card(Suit.SPADES, Rank.TEN, 10);
+    Card heartsAce = new Card(Suit.HEARTS, Rank.ACE, 11);
+    Card clubs6 = new Card(Suit.CLUBS, Rank.SIX, 6);
+    packStick = new Pack(spades10, heartsAce, clubs6);
+    packTwist = new Pack(spades10, clubs6, heartsAce);
     player = new PontoonPlayer("Phil");
   }
 
@@ -24,24 +34,42 @@ public class PontoonPlayerTest{
 
   @Test
   public void givePlayerAHand() {
+    shoe = new Shoe(packStick, false);
     Hand hand = new Hand();
-    player.giveCard(deck.dealCard());
-    player.giveCard(deck.dealCard());
-    assertEquals("Ace of Clubs\n2 of Clubs\n", player.showHand().toString());
-    assertEquals(13, player.valueOfHand());
+    player.giveCard(shoe.dealCard());
+    player.giveCard(shoe.dealCard());
+    assertEquals("10 of Spades\nAce of Hearts\n", player.showHand().toString());
+    assertEquals(21, player.valueOfHand());
   }
 
   @Test
-  public void givePlayerATurn() {
-    player.giveCard(deck.dealCard());
-    player.giveCard(deck.dealCard());
+  public void givePlayerATurn__Stick() {
+    shoe = new Shoe(packStick, false);
+    player.setGame(this);
+    player.giveCard(shoe.dealCard());
+    player.giveCard(shoe.dealCard());
     // Hand has value of 13 and dealer is showing an Ace so should twist three times
-    Card dealerCard = new Card(Suit.HEARTS, Rank.ACE, 11);
+    Card dealerCard = new Card(Suit.SPADES, Rank.ACE, 11);
     player.playNonDealerTurn(dealerCard);
     Hand hand = player.showHand();
-    assertEquals(5, hand.getSize());
-    assertEquals(16, player.valueOfHand());
-    assertEquals("Ace of Clubs\n2 of Clubs\nAce of Hearts\nAce of Hearts\nAce of Hearts\n", hand.toString());
+    assertEquals(2, hand.getSize());
+    assertEquals(21, player.valueOfHand());
+    assertEquals("10 of Spades\nAce of Hearts\n", player.showHand().toString());
+  }
+
+  @Test
+  public void givePlayerATurn__Twist() {
+    shoe = new Shoe(packTwist, false);
+    player.setGame(this);
+    player.giveCard(shoe.dealCard());
+    player.giveCard(shoe.dealCard());
+    // Hand has value of 13 and dealer is showing an Ace so should twist three times
+    Card dealerCard = new Card(Suit.SPADES, Rank.ACE, 11);
+    player.playNonDealerTurn(dealerCard);
+    Hand hand = player.showHand();
+    assertEquals(3, hand.getSize());
+    assertEquals(27, player.valueOfHand());
+    assertEquals("10 of Spades\n6 of Clubs\nAce of Hearts\n", player.showHand().toString());
   }
 
 }

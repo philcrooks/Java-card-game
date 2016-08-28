@@ -1,8 +1,9 @@
 package baccaratGame;
 import cardGameTypes.*;
 import cardGame.*;
+import behaviours.*;
 
-public class BaccaratGame extends Game {
+public class BaccaratGame extends Game implements Playability{
 
   public BaccaratGame() {
     super();
