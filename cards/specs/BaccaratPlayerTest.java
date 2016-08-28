@@ -8,10 +8,10 @@ import java.util.*;
 
 public class BaccaratPlayerTest implements Playability {
   // TODO: Create a method for dealing a card - different packs for different tests
-  Pack pack;
+  Pack packTwist;
+  Pack packStick;
   Shoe shoe;
   BaccaratPlayer player;
-  static final int[] values = new int[]{1,2,3,4,5,6,7,8,9,0,0,0,0};
 
   public Player getDealer() { return null; }
   public ArrayList<Player> getPlayers() { return null; }
@@ -19,8 +19,11 @@ public class BaccaratPlayerTest implements Playability {
 
   @Before
   public void before() {
-    pack = new Pack(values);
-    shoe = new Shoe(pack, false);
+    Card spades10 = new Card(Suit.SPADES, Rank.TEN, 0);
+    Card hearts5 = new Card(Suit.HEARTS, Rank.FIVE, 5);
+    Card clubs6 = new Card(Suit.CLUBS, Rank.SIX, 6);
+    packTwist = new Pack(spades10, hearts5, clubs6);
+    packStick = new Pack(spades10, clubs6, hearts5);
     player = new BaccaratPlayer("Phil");
   }
 
@@ -31,25 +34,41 @@ public class BaccaratPlayerTest implements Playability {
 
   @Test
   public void givePlayerAHand() {
+    shoe = new Shoe(packStick, false);
     Hand hand = new Hand();
     player.giveCard(shoe.dealCard());
     player.giveCard(shoe.dealCard());
-    assertEquals("Ace of Clubs\n2 of Clubs\n", player.showHand().toString());
-    assertEquals(3, player.valueOfHand());
+    assertEquals("10 of Spades\n6 of Clubs\n", player.showHand().toString());
+    assertEquals(6, player.valueOfHand());
   }
 
   @Test
-  public void givePlayerATurn() {
+  public void givePlayerATurn__Stick() {
+    shoe = new Shoe(packStick, false);
+    player.setGame(this);
+    player.giveCard(shoe.dealCard());
+    player.giveCard(shoe.dealCard());
+    // Value of the hand is 3 which is less than 6 so player should get another card
+    player.playTurn();
+    Hand hand = player.showHand();
+    assertEquals(2, hand.getSize());
+    assertEquals(6, player.valueOfHand());
+    assertEquals("10 of Spades\n6 of Clubs\n", player.showHand().toString());
+  }
+
+  @Test
+  public void givePlayerATurn__Twist() {
+    shoe = new Shoe(packTwist, false);
+    player.setGame(this);
     player.giveCard(shoe.dealCard());
     player.giveCard(shoe.dealCard());
     // Value of the hand is 3 which is less than 6 so player should get another card
     player.playTurn();
     Hand hand = player.showHand();
     assertEquals(3, hand.getSize());
-    assertEquals(2, player.valueOfHand());
-    assertEquals("Ace of Clubs\n2 of Clubs\n9 of Hearts\n", hand.toString());
+    assertEquals(1, player.valueOfHand());
+    assertEquals("10 of Spades\n5 of Hearts\n6 of Clubs\n", player.showHand().toString());
   }
-
 
 
 }

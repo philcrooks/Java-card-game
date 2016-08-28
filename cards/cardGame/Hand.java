@@ -40,4 +40,13 @@ public class Hand {
     return hand.size();
   }
 
+  public Card getCard( int cardIndex ) {
+    return hand.get(cardIndex);
+  }
+
+  public void replaceCard(Card oldCard, Card newCard) {
+    int cardIndex = hand.indexOf(oldCard);
+    hand.set(cardIndex, newCard);
+  }
+
 }

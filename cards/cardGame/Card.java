@@ -33,4 +33,9 @@ public class Card {
   public String toString() {
     return rank.toString() + " of " + suit.toString();
   }
+
+  public Card revalue(int newValue ) {
+    Card newCard = new Card(suit, rank, newValue);
+    return newCard;
+  }
 }

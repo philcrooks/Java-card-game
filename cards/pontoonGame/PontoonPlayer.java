@@ -15,6 +15,20 @@ public class PontoonPlayer extends Player {
     return myHand.getValue();
   }
 
+  public int revalueHand() {
+    // Player is bust and needs to devalue the first non-devalued Ace
+    Card myCard;
+    for (int c = 0; c < myHand.getSize(); c++) {
+      myCard = myHand.getCard(c);
+      if ((myCard.getRank() == Rank.ACE) && (myCard.getValue() == 11)) {
+        Card newCard = myCard.revalue(1);
+        myHand.replaceCard(myCard, newCard);
+        break;
+      }
+    }
+    return myHand.getValue();
+  }
+
   public void playTurn() {
     if (amDealer) {
       playDealerTurn(myGame.getPlayers());
@@ -47,8 +61,9 @@ public class PontoonPlayer extends Player {
       }
       if (twist) {
         myHand.addCard(hitMe());
+        if (valueOfHand() > 21) revalueHand();
       }
-    } while (twist && (myHand.getValue() <= 21) && (myHand.getSize() <= 4));
+    } while (twist && (valueOfHand() <= 21) && (myHand.getSize() <= 4));
   }
 
   public void playDealerTurn(ArrayList<Player> players) {
@@ -60,7 +75,7 @@ public class PontoonPlayer extends Player {
         if ((value > maxScore) && (value <= 21)) maxScore = value;
       }
     }
-    while (myHand.getValue() < maxScore) {
+    while ((myHand.getValue() < maxScore) && (myHand.getValue() < 21) && (myHand.getSize() <= 4)) {
       myHand.addCard(hitMe());
     }
   }
