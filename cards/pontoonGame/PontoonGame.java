@@ -1,5 +1,6 @@
-package cardGame;
+package pontoonGame;
 import cardGameTypes.*;
+import cardGame.*;
 import java.util.*;
 
 public class PontoonGame extends Game {
@@ -13,12 +14,13 @@ public class PontoonGame extends Game {
     for (String name : names) {
       addPlayer(new PontoonPlayer(name));
     }
+    addPlayer(new PontoonPlayer("Dealer"));
     setDealer();
   }
 
-  protected Deck buildDeck() {
+  protected Shoe buildShoe() {
     Pack pack = new Pack(new int[]{11,2,3,4,5,6,7,8,9,10,10,10,10});
-    return new Deck(pack);
+    return new Shoe(pack, 4);
   }
 
   public void playGame() {
@@ -35,7 +37,7 @@ public class PontoonGame extends Game {
     // Winners are those who have more points than the dealer without going bust.
     Player dealer = getDealer();
     int dealerScore = dealer.valueOfHand();
-    System.out.print("The dealer (" + dealer + ") was holding " + dealerScore + " points");
+    System.out.print("The dealer was holding " + dealerScore + " points");
     if (dealerScore > 21) System.out.print(" (bust)");
     System.out.println(":");
     System.out.println(dealer.showHand());

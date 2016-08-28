@@ -2,58 +2,58 @@ package cardGame;
 import java.util.*;
 import cardGameTypes.*;
 
-public class Deck {
-  private ArrayList<Card> deck;
+public class Shoe {
+  private ArrayList<Card> shoe;
 
   // Constructors
-  public Deck() {
-    deck = new ArrayList<Card>();
+  public Shoe() {
+    shoe = new ArrayList<Card>();
   }
 
-  public Deck(Pack pack) {
-    deck = new ArrayList<Card>();
+  public Shoe(Pack pack) {
+    shoe = new ArrayList<Card>();
     addPack(pack, 1);
   }
 
-  public Deck(Pack pack, int times) {
-    deck = new ArrayList<Card>();
+  public Shoe(Pack pack, int times) {
+    shoe = new ArrayList<Card>();
     addPack(pack, times);
   }
 
-  // Add cards to the deck. 
+  // Add cards to the shoe. 
   // All Card needs to do is to support the getCards() method which returns ArrayList<Card>
   public void addPack(Pack pack) {
-    //deck.addAll(pack.getCards());
+    //shoe.addAll(pack.getCards());
     addPack(pack, 1);
   }
 
   public void addPack(Pack pack, int times) {
     for ( int c = 0; c < times; c++ ) {
-      deck.addAll(pack.getCards());     
+      shoe.addAll(pack.getCards());     
     }
   }
 
   public void shuffle() {
     // TODO: May want to add a random seed here
     // This should make the shuffle less predictable
-    if (deck != null) {
-      Collections.shuffle(deck);
+    if (shoe != null) {
+      Collections.shuffle(shoe);
     }
   }
 
   public Card dealCard() {
-    Card card = deck.get(0);
-    deck.remove(0);
+    Card card = shoe.get(0);
+    shoe.remove(0);
     return card;
   }
 
   // Test methods not needed for the game
   public int size() {
-    return deck.size();
+    return shoe.size();
   }
 
   public Card getCard(int index){
-    return deck.get(index);
+    return shoe.get(index);
   }
 
 }

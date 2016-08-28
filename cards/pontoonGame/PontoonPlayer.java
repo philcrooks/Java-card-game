@@ -1,11 +1,17 @@
-package cardGame;
+package pontoonGame;
 import cardGameTypes.*;
+import cardGame.*;
 import java.util.*;
 
 public class PontoonPlayer extends Player {
 
   public PontoonPlayer( String name ) {
     super(name);
+  }
+
+  public int valueOfHand() {
+    if (myHand == null) return 0;
+    return myHand.getValue();
   }
 
   public void playTurn() {
@@ -17,7 +23,7 @@ public class PontoonPlayer extends Player {
     }
   }
 
-  private Card twist() {
+  private Card hitMe() {
     if (myGame == null) {
       // We're testing
       return new Card(Suit.HEARTS, Rank.ACE, 1);
@@ -26,26 +32,26 @@ public class PontoonPlayer extends Player {
   }
 
   public void playNonDealerTurn( Card dealerShowing ) {
-    boolean hitMe = false;
+    boolean twist = false;
     do {
       switch (myHand.getValue()) {
         case 15:
-        case 16: hitMe = (dealerShowing.getValue() >= 7);
+        case 16: twist = (dealerShowing.getValue() >= 7);
                  break;
-        case 17: hitMe = (dealerShowing.getRank() == Rank.ACE);
+        case 17: twist = (dealerShowing.getRank() == Rank.ACE);
                  break;
         case 18:
         case 19:
         case 20:
-        case 21: hitMe = false;
+        case 21: twist = false;
                  break;
-        default: hitMe = true;
+        default: twist = true;
                  break;
       }
-      if (hitMe) {
-        myHand.addCard(twist());
+      if (twist) {
+        myHand.addCard(hitMe());
       }
-    } while (hitMe && (myHand.getValue() <= 21) && (myHand.getSize() <= 4));
+    } while (twist && (myHand.getValue() <= 21) && (myHand.getSize() <= 4));
   }
 
   public void playDealerTurn(ArrayList<Player> players) {
@@ -58,7 +64,7 @@ public class PontoonPlayer extends Player {
       }
     }
     while (myHand.getValue() < maxScore) {
-      myHand.addCard(twist());
+      myHand.addCard(hitMe());
     }
   }
 

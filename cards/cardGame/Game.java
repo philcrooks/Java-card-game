@@ -5,13 +5,13 @@ import java.util.*;
 public abstract class Game {
   private ArrayList<Player> group;
   private Player dealer;
-  private Deck deckOfCards;
+  private Shoe shoeOfCards;
   private int dealerIndex;
   private int firstPlayerIndex;
   private int runningIndex;
 
   public Game() {
-    deckOfCards = buildDeck();
+    shoeOfCards = buildShoe();
     group = new ArrayList<Player>();
     firstPlayerIndex = dealerIndex = runningIndex = -1;
     dealer = null;
@@ -22,13 +22,13 @@ public abstract class Game {
     if ((noOfPlayers == 0) || (firstPlayerIndex < 0) || (noOfCards <= 0)) return;
     for (int c = 0; c < noOfCards; c++) {
       for (int p = 0; p < noOfPlayers; p++) {
-        group.get((p + firstPlayerIndex) % noOfPlayers).giveCard(deckOfCards.dealCard());
+        group.get((p + firstPlayerIndex) % noOfPlayers).giveCard(shoeOfCards.dealCard());
       }
     }
   }
 
   public Card dealCard () {
-    return deckOfCards.dealCard();
+    return shoeOfCards.dealCard();
   }
 
   public void addPlayer(Player player) {
@@ -42,6 +42,11 @@ public abstract class Game {
 
   public ArrayList<Player> getPlayers() {
     return group;
+  }
+
+  public Player getPlayer(int playerIndex) {
+    if (group.size() <= playerIndex) return null;
+    return group.get(playerIndex);
   }
 
   public Player switchDealer(Player newDealer) {
@@ -99,9 +104,9 @@ public abstract class Game {
   }
 
   public void shuffleCards() {
-    deckOfCards.shuffle();
+    shoeOfCards.shuffle();
   }
 
-  protected abstract Deck buildDeck();
+  protected abstract Shoe buildShoe();
   public abstract void playGame();
 }

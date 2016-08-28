@@ -1,7 +1,7 @@
 import static org.junit.Assert.*;
 import org.junit.*;
 import cardGameTypes.*;
-import cardGame.*;
+import pontoonGame.*;
 
 public class PontoonGameTest {
   PontoonGame game;
@@ -120,11 +120,14 @@ public class PontoonGameTest {
   public void newGameWithFourNamedPlayers() {
     PontoonGame newGame = new PontoonGame("Matthew", "Mark", "Luke", "John");
     newGame.dealHands(2);
-    assertEquals("Ace of Clubs\n5 of Clubs\n", newGame.getFirstPlayer().showHand().toString());
-    assertEquals("2 of Clubs\n6 of Clubs\n", newGame.getNextPlayer().showHand().toString());
-    assertEquals("3 of Clubs\n7 of Clubs\n", newGame.getNextPlayer().showHand().toString());
-    assertEquals("4 of Clubs\n8 of Clubs\n", newGame.getNextPlayer().showHand().toString());
-    assertEquals("Ace of Clubs\n5 of Clubs\n", newGame.getNextPlayer().showHand().toString());
+    assertEquals("Ace of Clubs\n6 of Clubs\n", newGame.getFirstPlayer().showHand().toString());
+    assertEquals("2 of Clubs\n7 of Clubs\n", newGame.getNextPlayer().showHand().toString());
+    assertEquals("3 of Clubs\n8 of Clubs\n", newGame.getNextPlayer().showHand().toString());
+    assertEquals("4 of Clubs\n9 of Clubs\n", newGame.getNextPlayer().showHand().toString());
+    PontoonPlayer player = (PontoonPlayer)newGame.getNextPlayer();
+    assertEquals(true, newGame.isDealer(player));
+    assertEquals("5 of Clubs\n10 of Clubs\n", player.showHand().toString());
+    assertEquals("Ace of Clubs\n6 of Clubs\n", newGame.getNextPlayer().showHand().toString());
   }
 
   @Test

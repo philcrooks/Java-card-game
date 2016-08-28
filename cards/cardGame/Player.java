@@ -34,14 +34,10 @@ public abstract class Player {
     myHand.addCard(card);
   }
 
-  public int valueOfHand() {
-    if (myHand == null) return 0;
-    return myHand.getValue();
-  }
-
   public Hand showHand() {
     return myHand;  
   }
 
   public abstract void playTurn();
+  public abstract int valueOfHand();
 }
