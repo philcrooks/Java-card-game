@@ -24,5 +24,18 @@ public class BaccaratGameTest {
     assertEquals("Phil", player.getName());
     assertEquals(true, game.isDealer(dealer));
     assertEquals("Ace of Clubs", game.dealCard().toString());
+    assertEquals(player, game.getNextPlayer());
+  }
+
+  @Test
+    public void runGame() {
+    game.playGame();
+    // Pack is not shuffled
+    Player player = game.getFirstPlayer();
+    Player dealer = game.getNextPlayer();
+    assertEquals("Ace of Clubs\n3 of Clubs\n5 of Clubs\n", player.showHand().toString());
+    assertEquals(9, player.valueOfHand());
+    assertEquals("2 of Clubs\n4 of Clubs\n", dealer.showHand().toString());
+    assertEquals(6, dealer.valueOfHand());
   }
 }

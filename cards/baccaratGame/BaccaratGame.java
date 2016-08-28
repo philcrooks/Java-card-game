@@ -3,7 +3,6 @@ import cardGameTypes.*;
 import cardGame.*;
 
 public class BaccaratGame extends Game {
-  private Shoe shoe;
 
   public BaccaratGame() {
     super();
@@ -11,14 +10,15 @@ public class BaccaratGame extends Game {
 
   public BaccaratGame(String playerName, Shoe shoe) {
     super();
-    this.shoe = shoe;
+    addShoe(shoe);
     addPlayer(new BaccaratPlayer(playerName));
     addPlayer(new BaccaratPlayer("Dealer"));
     setDealer();
   }
 
   public Shoe buildShoe() {
-    return shoe;
+    // This is called during call to super(). Have no shoe at that point.
+    return null;
   }
 
   public void playGame() {

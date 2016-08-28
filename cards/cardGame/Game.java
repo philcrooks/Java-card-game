@@ -14,17 +14,19 @@ public abstract class Game {
     group = new ArrayList<Player>();
     firstPlayerIndex = dealerIndex = runningIndex = -1;
     dealer = null;
-    shoeOfCards = null;
+    shoeOfCards = buildShoe();
+  }
+
+  protected void addShoe(Shoe shoe) {
+    if (shoeOfCards == null) shoeOfCards = shoe;
   }
 
   public void shuffleCards() {
-    if (shoeOfCards == null) shoeOfCards = buildShoe();
     if (shoeOfCards == null) return;
     shoeOfCards.shuffle();
   }
 
   public void dealHands(int noOfCards) {
-    if (shoeOfCards == null) shoeOfCards = buildShoe();
     if (shoeOfCards == null) return;
     int noOfPlayers = group.size();
     if ((noOfPlayers == 0) || (firstPlayerIndex < 0) || (noOfCards <= 0)) return;
@@ -36,7 +38,6 @@ public abstract class Game {
   }
 
   public Card dealCard () {
-    if (shoeOfCards == null) shoeOfCards = buildShoe();
     if (shoeOfCards == null) return null;
     return shoeOfCards.dealCard();
   }

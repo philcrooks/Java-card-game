@@ -10,6 +10,7 @@ public class PontoonPlayer extends Player {
   }
 
   public int valueOfHand() {
+    // TODO: find some way of revaluing the hand for low value od aces.
     if (myHand == null) return 0;
     return myHand.getValue();
   }
