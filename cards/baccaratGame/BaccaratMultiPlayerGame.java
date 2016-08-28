@@ -3,7 +3,7 @@ import cardGameTypes.*;
 import cardGame.*;
 import java.util.*;
 
-class BaccaratMulti {
+class BaccaratMultiPlayerGame {
   private ArrayList<BaccaratGame> games;
   private Shoe shoe;
 

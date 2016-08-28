@@ -15,32 +15,36 @@ public class BaccaratPlayer extends Player {
     return myHand.getValue() % 10;
   }
 
-  public void playTurn() {
-    if (amDealer) {
-      if (thirdCard == null) {
-        if (valueOfHand() < 6) {
-          myHand.addCard(myGame.dealCard());
-        }
-      } else {
-        int value3rd = thirdCard.getValue();
-        switch(valueOfHand()) {
-          case 0:
-          case 1:
-          case 2: myHand.addCard(myGame.dealCard());
-                  break;
-          case 3: if (value3rd != 8) myHand.addCard(myGame.dealCard());
-                  break;
-          case 4: if ((value3rd >= 2) && (value3rd <= 7)) myHand.addCard(myGame.dealCard());
-                  break;
-          case 5: if ((value3rd >= 4) && (value3rd <= 7)) myHand.addCard(myGame.dealCard());
-                  break;
-          case 6: if ((value3rd == 6) || (value3rd == 7)) myHand.addCard(myGame.dealCard());
-                  break;
-          default: // Do nothing
-                  break;
-        }
+  private void playDealerTurn() {
+    if (thirdCard == null) {
+      if (valueOfHand() < 6) {
+        myHand.addCard(myGame.dealCard());
       }
     } else {
+      int value3rd = thirdCard.getValue();
+      switch(valueOfHand()) {
+        case 0:
+        case 1:
+        case 2: myHand.addCard(myGame.dealCard());
+                break;
+        case 3: if (value3rd != 8) myHand.addCard(myGame.dealCard());
+                break;
+        case 4: if ((value3rd >= 2) && (value3rd <= 7)) myHand.addCard(myGame.dealCard());
+                break;
+        case 5: if ((value3rd >= 4) && (value3rd <= 7)) myHand.addCard(myGame.dealCard());
+                break;
+        case 6: if ((value3rd == 6) || (value3rd == 7)) myHand.addCard(myGame.dealCard());
+                break;
+        default: // Do nothing
+                break;
+      }
+    }
+  }
+
+  public void playTurn() {
+    if (amDealer) {
+      playDealerTurn();
+     } else {
       // Not the dealer
       if (valueOfHand() < 6) {
         thirdCard = myGame.dealCard();
