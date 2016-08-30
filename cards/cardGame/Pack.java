@@ -2,7 +2,7 @@ package cardGame;
 import java.util.*;
 import cardGameTypes.*;
 
-public class Pack {
+public abstract class Pack {
 
   private ArrayList<Card> pack;
 
@@ -11,7 +11,7 @@ public class Pack {
     pack = new ArrayList<Card>();
     for (Suit suit : Suit.values()) {
       for (Rank rank : Rank.values()) {
-        pack.add(new Card(suit, rank));
+        pack.add(new Card(suit, rank, valueOfCard(suit, rank)));
       }
     }
   }
@@ -24,15 +24,6 @@ public class Pack {
       i = 0;
       for (Rank rank : Rank.values()) {
         pack.add(new Card(suit, rank, values[i++]));
-      }
-    }
-  }
-
-  public Pack(EnumMap<Rank, Integer> values) {
-    pack = new ArrayList<Card>();
-    for (Suit suit : Suit.values()) {
-      for (Rank rank : Rank.values()) {
-        pack.add(new Card(suit, rank, (int)values.get(rank)));
       }
     }
   }
@@ -52,4 +43,6 @@ public class Pack {
   public int size() {
     return pack.size();
   }
+
+  abstract protected int valueOfCard(Suit suit, Rank rank);
 }

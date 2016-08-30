@@ -12,7 +12,7 @@ public class BaccaratGameTest {
   
   @Before
   public void before(){
-    pack = new Pack(values);
+    pack = new GenericPack(values);
     shoe = new Shoe(pack, false);
     game = new BaccaratGame("Phil", shoe);
   }

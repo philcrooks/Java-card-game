@@ -7,7 +7,7 @@ public class BaccaratMultiPlayerGame {
   private ArrayList<BaccaratGame> games;
 
   public BaccaratMultiPlayerGame(String... players) {
-    Pack pack = new Pack(new int[]{1,2,3,4,5,6,7,8,9,0,0,0,0});
+    Pack pack = new BaccaratPack();
     Shoe shoe = new Shoe(pack, 4);
     shoe.shuffle();
     games = new ArrayList<BaccaratGame>();

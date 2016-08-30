@@ -22,8 +22,8 @@ public class BaccaratPlayerTest implements Playability {
     Card spades10 = new Card(Suit.SPADES, Rank.TEN, 0);
     Card hearts5 = new Card(Suit.HEARTS, Rank.FIVE, 5);
     Card clubs6 = new Card(Suit.CLUBS, Rank.SIX, 6);
-    packTwist = new Pack(spades10, hearts5, clubs6);
-    packStick = new Pack(spades10, clubs6, hearts5);
+    packTwist = new GenericPack(spades10, hearts5, clubs6);
+    packStick = new GenericPack(spades10, clubs6, hearts5);
     player = new BaccaratPlayer("Phil");
   }
 

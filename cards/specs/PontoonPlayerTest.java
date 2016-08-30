@@ -25,9 +25,9 @@ public class PontoonPlayerTest implements Playability {
     Card spadesAce = new Card(Suit.SPADES, Rank.ACE, 11);
     Card clubs6 = new Card(Suit.CLUBS, Rank.SIX, 6);
     Card diamonds4 = new Card(Suit.DIAMONDS, Rank.FOUR, 4);
-    packStick = new Pack(spades10, heartsAce, clubs6);
-    packTwist = new Pack(spades10, clubs6, diamonds4);
-    packAcesLow = new Pack(heartsAce, diamonds4, spadesAce, spades10, clubs6);
+    packStick = new GenericPack(spades10, heartsAce, clubs6);
+    packTwist = new GenericPack(spades10, clubs6, diamonds4);
+    packAcesLow = new GenericPack(heartsAce, diamonds4, spadesAce, spades10, clubs6);
     player = new PontoonPlayer("Phil");
   }
 
