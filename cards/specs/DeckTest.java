@@ -69,6 +69,21 @@ public class DeckTest{
   }
 
   @Test
+  public void handIsCopied() {
+    Hand hand = new Hand();
+    for(int i=0; i<5; i++) {
+      hand.addCard(deck.dealCard());
+    }
+    Hand shownHand = hand.show();
+    assertEquals("Ace of Clubs\n2 of Clubs\n3 of Clubs\n4 of Clubs\n5 of Clubs\n", hand.toString());
+    assertEquals("Ace of Clubs\n2 of Clubs\n3 of Clubs\n4 of Clubs\n5 of Clubs\n", shownHand.toString());
+    Card card = deck.dealCard();
+    shownHand.replaceCard(hand.getFirstCard(), card);
+    assertEquals("Ace of Clubs\n2 of Clubs\n3 of Clubs\n4 of Clubs\n5 of Clubs\n", hand.toString());
+    assertEquals("6 of Clubs\n2 of Clubs\n3 of Clubs\n4 of Clubs\n5 of Clubs\n", shownHand.toString());
+  }
+
+  @Test
   public void baccaratPack() {
     for (Card card : baccaratPack.getCards()) {
       switch (card.getRank()) {
