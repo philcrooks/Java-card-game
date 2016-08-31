@@ -36,7 +36,7 @@ public abstract class Player {
   }
 
   public Hand showHand() {
-    return myHand;  
+    return myHand.show(); 
   }
 
   public abstract void playTurn();

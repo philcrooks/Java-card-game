@@ -2,6 +2,10 @@ package cardGame;
 import cardGameTypes.*;
 
 public class Card {
+
+  // This class is immutable. A card cannot be changed once it has been created.
+  // To change the value of a card, a copy of the card is created and a new value allocated. 
+
   private Suit suit;
   private Rank rank;
   private int value;

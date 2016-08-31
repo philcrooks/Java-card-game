@@ -34,8 +34,7 @@ public class DeckTest{
 
   @Test
   public void deckSizeCheck() {
-    deck.addPack(pack);
-    assertEquals(104, deck.size());
+    assertEquals(52, deck.size());
     assertEquals(104, doubleDeck.size());
   }
 

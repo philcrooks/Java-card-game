@@ -31,12 +31,12 @@ public class Shoe {
 
   // Add cards to the shoe. 
   // All Card needs to do is to support the getCards() method which returns ArrayList<Card>
-  public void addPack(Pack pack) {
+  private void addPack(Pack pack) {
     //shoe.addAll(pack.getCards());
     addPack(pack, 1);
   }
 
-  public void addPack(Pack pack, int times) {
+  private void addPack(Pack pack, int times) {
     for ( int c = 0; c < times; c++ ) {
       shoe.addAll(pack.getCards());     
     }
@@ -51,6 +51,7 @@ public class Shoe {
   }
 
   public Card dealCard() {
+    // Card is immutable
     Card card = shoe.get(0);
     shoe.remove(0);
     return card;
@@ -62,7 +63,7 @@ public class Shoe {
   }
 
   public Card getCard(int index){
+    // Card is immutable
     return shoe.get(index);
   }
-
 }
