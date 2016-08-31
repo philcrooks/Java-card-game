@@ -26,7 +26,7 @@ public class PontoonPlayer extends Player {
         break;
       }
     }
-    return myHand.getValue();
+    return valueOfHand();
   }
 
   public void playTurn() {
@@ -45,7 +45,7 @@ public class PontoonPlayer extends Player {
   public void playNonDealerTurn( Card dealerShowing ) {
     boolean twist = false;
     do {
-      switch (myHand.getValue()) {
+      switch (valueOfHand()) {
         case 15:
         case 16: twist = (dealerShowing.getValue() >= 7);
                  break;
