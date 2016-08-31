@@ -111,6 +111,14 @@ public abstract class Game implements Playability {
     return group.get(runningIndex++);
   }
 
+  public Player getNextPlayer(Player lastPlayer) {
+    // This version of the code would be re-entrant because the state is held by the caller
+    int playerIndex = group.indexOf(lastPlayer);
+    if ((playerIndex < 0) || (runningIndex < 0)) return null;
+    runningIndex = (playerIndex + 1) % group.size();
+    return group.get(runningIndex++);
+  }
+
   public boolean isDealer(Player player) {
     return (dealer == player);
   }
