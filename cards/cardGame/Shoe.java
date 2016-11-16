@@ -1,6 +1,5 @@
 package cardGame;
 import java.util.*;
-import cardGameTypes.*;
 
 public class Shoe {
   // TODO: Create a shoe that won't shuffle for test purposes
@@ -31,10 +30,10 @@ public class Shoe {
 
   // Add cards to the shoe. 
   // All Card needs to do is to support the getCards() method which returns ArrayList<Card>
-  private void addPack(Pack pack) {
-    //shoe.addAll(pack.getCards());
-    addPack(pack, 1);
-  }
+//  private void addPack(Pack pack) {
+//    //shoe.addAll(pack.getCards());
+//    addPack(pack, 1);
+//  }
 
   private void addPack(Pack pack, int times) {
     for ( int c = 0; c < times; c++ ) {

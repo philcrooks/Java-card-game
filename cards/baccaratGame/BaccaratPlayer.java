@@ -1,5 +1,4 @@
 package baccaratGame;
-import cardGameTypes.*;
 import cardGame.*;
 
 public class BaccaratPlayer extends Player {
