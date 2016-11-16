@@ -1,7 +1,9 @@
 import static org.junit.Assert.*;
+
 import org.junit.*;
-import cardGameTypes.*;
+
 import cardGame.*;
+import cardGameTypes.*;
 import baccaratGame.*;
 import pontoonGame.*;
 

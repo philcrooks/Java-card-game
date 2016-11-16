@@ -35,7 +35,7 @@ public class BaccaratPlayerTest implements Playability {
   @Test
   public void givePlayerAHand() {
     shoe = new Shoe(packStick, false);
-    Hand hand = new Hand();
+//    Hand hand = new Hand();
     player.giveCard(shoe.dealCard());
     player.giveCard(shoe.dealCard());
     assertEquals("10 of Spades\n6 of Clubs\n", player.showHand().toString());

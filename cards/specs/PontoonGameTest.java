@@ -1,6 +1,5 @@
 import static org.junit.Assert.*;
 import org.junit.*;
-import cardGameTypes.*;
 import pontoonGame.*;
 
 public class PontoonGameTest {

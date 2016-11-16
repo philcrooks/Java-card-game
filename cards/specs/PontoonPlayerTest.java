@@ -39,7 +39,7 @@ public class PontoonPlayerTest implements Playability {
   @Test
   public void givePlayerAHand() {
     shoe = new Shoe(packStick, false);
-    Hand hand = new Hand();
+//    Hand hand = new Hand();
     player.giveCard(shoe.dealCard());
     player.giveCard(shoe.dealCard());
     assertEquals("10 of Spades\nAce of Hearts\n", player.showHand().toString());
